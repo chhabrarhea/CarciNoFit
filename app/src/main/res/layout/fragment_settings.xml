@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragments.SettingsFragment">
+
+        <Toolbar
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/primaryColor"
+            android:fitsSystemWindows="true"
+            android:title="@string/health_data"
+            android:titleTextColor="@color/white" />
+
+        <TextView
+            android:id="@+id/nameHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appBarLayout"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginTop="20dp"
+            android:text="Name"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/name_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameHeading"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="-5dp"
+            android:background="@android:color/transparent"
+            android:hint="Enter Name"
+            android:inputType="none"
+            android:padding="7dp"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/weightHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_text_view"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginTop="20dp"
+            android:text="Weight"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/weight_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weightHeading"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="-5dp"
+            android:padding="6dp"
+            android:text="0.00 KG"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/heightHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weight_text_view"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginTop="20dp"
+            android:text="Height"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/hText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heightHeading"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="-5dp"
+            android:inputType="none"
+            android:padding="7dp"
+            android:text="0.00 CM"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/dobHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hText"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginTop="20dp"
+            android:text="Date of Birth"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dobText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dobHeading"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="-5dp"
+            android:inputType="none"
+            android:padding="7dp"
+            android:text="1999-11-10"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/cont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dobText"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="15dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/white"
+            android:text="Continue"
+            android:textAllCaps="false" />
+    </RelativeLayout>
+</layout>

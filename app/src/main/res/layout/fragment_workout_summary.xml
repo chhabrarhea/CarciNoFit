@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.WorkoutSummaryFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/ic_finishscreen"
+        android:id="@+id/finishImage"/>
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/confettiView"/>
+    <include
+        layout="@layout/stats_header"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/finishImage"
+        android:id="@+id/statsLayout"/>
+
+
+
+</RelativeLayout>
+</layout>

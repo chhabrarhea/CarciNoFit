@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="10dp"
+    >
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/icon"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_exercise_history_icon"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/running"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/icon"
+        android:layout_marginStart="15dp"
+        android:padding="3dp"
+        android:id="@+id/relativeRoot"
+        android:layout_centerVertical="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="April 15, 9:25 am"
+            android:id="@+id/timeStampTv"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timeStampTv"
+            android:textSize="18sp"
+            android:layout_marginBottom="2dp"
+            android:id="@+id/routineNameTv"
+            android:textColor="@color/black"
+            tools:text="Fat Burning"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/routineNameTv"
+            app:drawableStartCompat="@drawable/ic_flame"
+            android:drawablePadding="3dp"
+            tools:text="324"
+            android:id="@+id/caloriesTv"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/routineNameTv"
+            android:layout_toEndOf="@id/caloriesTv"
+            android:id="@+id/durationTv"
+            tools:text="17 minutes"
+            android:drawablePadding="3dp"
+            app:drawableStartCompat="@drawable/ic_baseline_timer_24" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/cardview_dark_background"
+       android:layout_below="@id/relativeRoot"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="5dp"
+        />
+
+
+
+</RelativeLayout>
+</layout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="exercise"
+            type="com.example.carcinofit.database.models.Exercise" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/gif"
+            imageUrl="@{exercise.image}"
+            isGif="@{exercise.isGif}"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/gif" />
+
+        <ImageButton
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/running"
+            android:padding="7dp"
+            android:src="@drawable/ic_baseline_close_24"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gif"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:text="@{exercise.name}"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="Side Lunges" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:text="@{exercise.desc}"
+            android:textColor="@color/black"
+            tools:text="Stand with your feet shoulder-width apart. Lower your hips and butt downward into a squat position. Keep your weight shifting back in your heels and your chest lifted up. Pause at the bottom and then drive up through the heels to stand." />
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="exercise"
+            type="com.example.carcinofit.database.models.Exercise" />
+
+        <variable
+            name="routine"
+            type="com.example.carcinofit.database.models.Routine" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragments.ExerciseFragment">
+
+        <ImageView
+            android:id="@+id/countdownImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/avd_countdown"
+            android:contentDescription="@null"
+            android:visibility="gone" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/routineProgressIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:max="@{routine.exercises.size()}"
+            android:setTextColor="@{routine.color}"
+            app:trackColor="@color/white"
+            app:trackThickness="10dp" />
+
+        <ImageView
+            android:id="@+id/gif"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@id/routineProgressIndicator"
+            android:contentDescription="@string/gif" />
+
+        <RelativeLayout
+            android:id="@+id/restRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gif"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:setTextColor="@{routine.color}"
+                android:text="Ready To Go!"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text="@{exercise.name}"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:text="Side Lateral Lunges" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressBar"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="10dp"
+                    android:indeterminate="false"
+                    android:setTextColor="@{routine.color}"
+                    app:trackThickness="70dp" />
+
+                <TextView
+                    android:id="@+id/timerTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/black"
+                    android:textSize="32sp"
+                    tools:text="10" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/exerciseRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gif"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/secondsPassedTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/exerciseTitle"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="5dp"
+                android:setTextColor="@{routine.color}"
+                android:textSize="42sp"
+                android:textStyle="bold"
+                tools:text="0''" />
+
+            <TextView
+                android:id="@+id/totalDurationTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/exerciseTitle"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/secondsPassedTv"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                tools:text="/40''" />
+
+
+            <TextView
+                android:id="@+id/exerciseTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/exerciseBarRoot"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="20dp"
+                android:text="@{exercise.name}"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:text="Side Lateral Lunges" />
+
+            <RelativeLayout
+                android:id="@+id/exerciseBarRoot"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true">
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/exerciseProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:setTextColor="@{routine.color}"
+                    app:trackColor="@color/white"
+                    app:trackThickness="100dp" />
+
+                <ImageButton
+                    android:id="@+id/pauseExerciseBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:background="@android:color/transparent"
+                    android:elevation="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_baseline_pause_24"
+                    android:visibility="gone" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/repsFab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/app_name"
+                    android:setTextColor="@{routine.color}"
+                    android:src="@drawable/ic_baseline_check_24"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>
