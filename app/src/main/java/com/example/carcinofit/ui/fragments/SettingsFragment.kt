@@ -16,10 +16,13 @@ import java.util.*
 
 @AndroidEntryPoint
 class SettingsFragment : Fragment() {
+
     private val binding: FragmentSettingsBinding by lazy {
         FragmentSettingsBinding.inflate(layoutInflater, null, false)
     }
+
     private val newDate: Calendar = Calendar.getInstance()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,19 +37,19 @@ class SettingsFragment : Fragment() {
     }
 
     private fun openDialog() {
-        val binding1 = HwDialogBinding.inflate(layoutInflater, null, false)
+        val dialogBinding = HwDialogBinding.inflate(layoutInflater, null, false)
         val builder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
-        builder.setView(binding1.root)
+        builder.setView(dialogBinding.root)
         val alert = builder.create()
-        binding1.cancel.setOnClickListener { alert.dismiss() }
-        binding1.ok.setOnClickListener {
+        dialogBinding.cancel.setOnClickListener { alert.dismiss() }
+        dialogBinding.ok.setOnClickListener {
             var wt: String
-            if (binding1.weight.text.isNotEmpty()) {
-                wt = "${binding1.weight.text} ${resources.getString(R.string.kg)}"
+            if (dialogBinding.weight.text.isNotEmpty()) {
+                wt = "${dialogBinding.weight.text} ${resources.getString(R.string.kg)}"
                 binding.weightTextView.text = wt
             }
-            if (binding1.height.text.isNotEmpty()) {
-                wt = "${binding1.weight.text} ${resources.getString(R.string.cm)}"
+            if (dialogBinding.height.text.isNotEmpty()) {
+                wt = "${dialogBinding.weight.text} ${resources.getString(R.string.cm)}"
                 binding.hText.text = wt
             }
             alert.dismiss()
@@ -70,6 +73,5 @@ class SettingsFragment : Fragment() {
             )
         )
         datePicker.show()
-
     }
 }

@@ -12,7 +12,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/gif"
@@ -31,7 +31,7 @@
             android:layout_alignParentEnd="true"
             android:background="@android:color/transparent"
             android:contentDescription="@string/running"
-            android:padding="7dp"
+            android:padding="8dp"
             android:src="@drawable/ic_baseline_close_24"
             app:tint="@color/black" />
 
@@ -40,22 +40,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/gif"
-            android:layout_margin="5dp"
-            android:padding="5dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="8dp"
             android:text="@{exercise.name}"
             android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            tools:text="Side Lunges" />
+            tools:text="Side Lunges"
+            style="@style/Heading1"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/desc"
+            style="@style/Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:layout_margin="5dp"
-            android:padding="5dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="16dp"
+            android:padding="8dp"
             android:text="@{exercise.desc}"
             android:textColor="@color/black"
             tools:text="Stand with your feet shoulder-width apart. Lower your hips and butt downward into a squat position. Keep your weight shifting back in your heels and your chest lifted up. Pause at the bottom and then drive up through the heels to stand." />

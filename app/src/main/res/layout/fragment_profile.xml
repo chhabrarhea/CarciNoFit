@@ -1,118 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ProfileFragment">
 
-   <Toolbar
-       android:layout_width="match_parent"
-       android:layout_height="80dp"
-       android:fitsSystemWindows="true"
-       android:title="@string/me"
-       android:titleTextAppearance="@style/toolbarTextAppearance"
-       android:id="@+id/toolbar"/>
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:fitsSystemWindows="true"
+        android:title="@string/me"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:titleTextAppearance="@style/toolbarTextAppearance" />
+
     <View
-        android:layout_width="match_parent"
+        android:id="@+id/divider1"
+        android:layout_width="408dp"
         android:layout_height="1dp"
-        android:background="@color/black"
-        android:layout_below="@id/toolbar"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="vertical">
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="@string/profile"
             android:id="@+id/profileTv"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:drawablePadding="15dp"
-            app:drawableStartCompat="@drawable/ic_edit_profile_icon" />
+            style="@style/Body1"
+            android:drawablePadding="16dp"
+            app:drawableStartCompat="@drawable/ic_edit_profile_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider1"
+            android:layout_marginHorizontal="16dp"/>
         <View
+            android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/lightGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileTv"
+            android:layout_marginHorizontal="16dp"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="@string/reminder"
-            android:textColor="@color/black"
+            style="@style/Body1"
             android:id="@+id/reminderTv"
-            android:textSize="18sp"
-            android:drawablePadding="15dp"
-            app:drawableStartCompat="@drawable/ic_reminder_icon" />
+            android:drawablePadding="16dp"
+            app:drawableStartCompat="@drawable/ic_reminder_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            android:layout_marginHorizontal="16dp"/>
         <View
+            android:id="@+id/divider3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/lightGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reminderTv"
+            android:layout_marginHorizontal="16dp"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="@string/rest_set"
-            android:textColor="@color/black"
-            android:textSize="18sp"
             android:id="@+id/restSetTv"
-            android:drawablePadding="15dp"
-            app:drawableStartCompat="@drawable/ic_baseline_coffee_24"/>
+            android:drawablePadding="16dp"
+            style="@style/Body1"
+            app:drawableStartCompat="@drawable/ic_baseline_coffee_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider3"
+            android:layout_marginHorizontal="16dp"/>
         <View
+            android:id="@+id/divider4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/lightGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/restSetTv"
+            android:layout_marginHorizontal="16dp"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="@string/weekly_goal"
-            android:textColor="@color/black"
+            style="@style/Body1"
             android:id="@+id/goalTv"
-            android:textSize="18sp"
-            android:drawablePadding="15dp"
-            app:drawableStartCompat="@drawable/ic_baseline_check_24" />
+            android:drawablePadding="16dp"
+            app:drawableStartCompat="@drawable/ic_baseline_check_24" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider4"
+            android:layout_marginHorizontal="16dp"/>
         <View
+            android:id="@+id/divider5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/lightGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/goalTv"
+            android:layout_marginHorizontal="16dp"
             />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
             <TextView
+                android:id="@+id/googleFitTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/syncSwitch"
+                android:drawablePadding="16dp"
                 android:padding="20dp"
                 android:text="@string/sync_to_google_fit"
-                android:textColor="@color/black"
-                android:layout_toStartOf="@id/syncSwitch"
-                android:textSize="18sp"
-                android:id="@+id/googleFitTv"
-                android:drawablePadding="15dp"
-                app:drawableStartCompat="@drawable/ic_google_fit" />
+                style="@style/Body1"
+                app:drawableStartCompat="@drawable/ic_google_fit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider5"
+                android:layout_marginHorizontal="16dp" />
+
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="2dp"
+                android:layout_marginEnd="16dp"
                 android:layout_centerVertical="true"
-                android:id="@+id/syncSwitch"/>
+                android:id="@+id/syncSwitch"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider5" />
 
             <View
+                android:id="@+id/divider6"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/lightGray"
                 android:layout_below="@id/googleFitTv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/googleFitTv"
+                android:layout_marginHorizontal="16dp"
                 />
-        </RelativeLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,14 +162,22 @@
             android:text="@string/reset_progress"
             android:textColor="@color/black"
             android:id="@+id/resetTv"
-            android:textSize="18sp"
-            android:drawablePadding="15dp"
-            app:drawableStartCompat="@drawable/ic_baseline_restart_alt_24" />
+            style="@style/Body1"
+            android:drawablePadding="16dp"
+            app:drawableStartCompat="@drawable/ic_baseline_restart_alt_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider6"
+            android:layout_marginHorizontal="16dp"/>
         <View
+            android:id="@+id/divider7"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/lightGray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/resetTv"
+            android:layout_marginHorizontal="16dp"
             />
-    </LinearLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,4 +12,5 @@
     <color name="lightGray">#bdbdbd</color>
     <color name="disabled_secondary">#66ffffff</color>
     <color name="disabled_primary">#61000000</color>
+    <color name="background">#f3f3f3</color>
 </resources>

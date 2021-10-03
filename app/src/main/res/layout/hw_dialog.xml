@@ -5,54 +5,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp">
+
         <TextView
+            android:id="@+id/title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/title1"
             android:text="Weight"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000"/>
+           style="@style/Heading1" />
+
         <EditText
+            android:id="@+id/weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/title1"
-            android:textSize="18sp"
-            android:layout_toStartOf="@id/kg"
             android:layout_marginTop="-3dp"
+            android:layout_toStartOf="@id/kg"
             android:inputType="number"
-            android:id="@+id/weight"/>
+            android:textSize="18sp" />
+
         <TextView
+            android:id="@+id/kg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/kg"
+            android:layout_below="@id/title1"
             android:layout_alignParentEnd="true"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/secondaryColor"
             android:layout_marginStart="10dp"
             android:layout_marginTop="7dp"
             android:text="@string/kg"
-            android:layout_below="@id/title1"/>
+            android:textColor="@color/secondaryColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/title"
-            android:layout_marginTop="15dp"
             android:layout_below="@id/weight"
+            android:layout_marginTop="16dp"
             android:text="Height"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000"/>
+            style="@style/Heading1" />
+
         <EditText
+            android:id="@+id/height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:textSize="18sp"
-            android:layout_toStartOf="@id/cm"
             android:layout_marginTop="-3dp"
+            android:layout_toStartOf="@id/cm"
             android:inputType="number"
-            android:id="@+id/height"/>
+            android:textSize="18sp" />
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
@@ -67,27 +68,28 @@
 
            android:layout_below="@id/title"/>
 
-        <Button
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/ok"
+            style="@style/ButtonPrimary"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_below="@id/height"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
             android:layout_toLeftOf="@id/cancel"
-            android:layout_below="@id/height"
-            android:layout_marginTop="10dp"
-            app:backgroundTint="@color/secondaryColor"
-            android:text="OK"/>
+            android:text="OK" />
+
         <Button
-            android:layout_width="wrap_content"
             android:id="@+id/cancel"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
+            style="@style/ButtonSecondary"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_below="@id/height"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/secondaryColor"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
-            android:text="Cancel"/>
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/cancel" />
 
 
 
