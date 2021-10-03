@@ -13,10 +13,12 @@
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_profile.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_routine_detail.xml" value="0.32395833333333335" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_settings.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_statistics.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_statistics.xml" value="0.22" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/hw_dialog.xml" value="0.5" />
+        <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/list_item_weekview.xml" value="1.3333333333333333" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/routine_card.xml" value="0.5" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/stats_header.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/week_view.xml" value="0.5285118219749653" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/weekly_goal_layout.xml" value="0.6" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/menu/bottom_nav_menu.xml" value="0.16197916666666667" />
       </map>

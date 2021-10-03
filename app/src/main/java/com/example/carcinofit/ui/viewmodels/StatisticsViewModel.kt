@@ -2,17 +2,24 @@ package com.example.carcinofit.ui.viewmodels
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.text.SpannableStringBuilder
+import android.util.Log
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.text.color
+import androidx.core.view.get
 import androidx.lifecycle.*
 import com.example.carcinofit.R
 import com.example.carcinofit.database.Repository
 import com.example.carcinofit.database.models.ChartStats
+import com.example.carcinofit.databinding.ListItemWeekviewBinding
 import com.example.carcinofit.databinding.WeekViewBinding
 import com.example.carcinofit.other.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.YearMonth
 import java.util.*
 import javax.inject.Inject
 
@@ -32,7 +39,7 @@ class StatisticsViewModel @Inject constructor(
         }
     }
 
-    fun getWeeklyGoal(): String = sharedPreferences.getInt(Constants.userWeeklyGoal, 1).toString()
+    fun getWeeklyGoal(): Int = sharedPreferences.getInt(Constants.userWeeklyGoal, 3)
 
     private fun getWeeklyWorkouts(mon: Calendar, sun: Calendar) {
         mon.set(Calendar.HOUR, 0)
@@ -47,36 +54,64 @@ class StatisticsViewModel @Inject constructor(
     }
 
     fun initializeWeekView(calendarView: WeekViewBinding) {
-        val day = Calendar.getInstance()
-        day.timeInMillis = System.currentTimeMillis()
+        var day = 0
+        var dayOfWeek = 0
+        var year = 0
+        var month = 0
+        var daysInMonth = 0
+        Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            day = this.get(Calendar.DAY_OF_MONTH)
+            year = this.get(Calendar.YEAR)
+            month = this.get(Calendar.MONTH)
+            val yearMonth = YearMonth.of(year, month)
+            daysInMonth = yearMonth.lengthOfMonth()
+            dayOfWeek = this.get(Calendar.DAY_OF_WEEK)
+        }
+
         val monday = Calendar.getInstance()
-        var sunday = Calendar.getInstance()
-        if (day.get(Calendar.DAY_OF_WEEK) == 1) {
-            sunday = day
+        val sunday = Calendar.getInstance()
+        if (dayOfWeek == 1) {
+            sunday.timeInMillis = System.currentTimeMillis()
             monday.set(
-                day.get(Calendar.YEAR),
-                day.get(Calendar.MONTH),
-                day.get(Calendar.DAY_OF_MONTH) - 6
+                year,
+                if (day - 6 < 1) month - 1  else month,
+                if (day - 6 < 1) daysInMonth - 6 + day else day - 6
             )
         } else {
             sunday.set(
-                day.get(Calendar.YEAR),
-                day.get(Calendar.MONTH),
-                day.get(Calendar.DAY_OF_MONTH) + (8 - day.get(Calendar.DAY_OF_WEEK))
+                year,
+                month,
+                day + (8 - dayOfWeek)
             )
             monday.set(
-                day.get(Calendar.YEAR),
-                day.get(Calendar.MONTH),
-                day.get(Calendar.DAY_OF_MONTH) - day.get(Calendar.DAY_OF_WEEK) + 2
+                year,
+                month,
+                day - dayOfWeek + 2
             )
         }
-        calendarView.mondayTv.text = monday.get(Calendar.DAY_OF_MONTH).toString()
-        calendarView.tuesdayTv.text = (sunday.get(Calendar.DAY_OF_MONTH) - 5).toString()
-        calendarView.wednesdayTv.text = (sunday.get(Calendar.DAY_OF_MONTH) - 4).toString()
-        calendarView.thursdayTv.text = (sunday.get(Calendar.DAY_OF_MONTH) - 3).toString()
-        calendarView.fridayTv.text = (sunday.get(Calendar.DAY_OF_MONTH) - 2).toString()
-        calendarView.saturdayTv.text = (sunday.get(Calendar.DAY_OF_MONTH) - 1).toString()
-        calendarView.sundayTv.text = (sunday.get(Calendar.DAY_OF_MONTH)).toString()
+        val sameMonth = daysInMonth - monday.get(Calendar.DAY_OF_MONTH)
+        val root = calendarView.linearRoot
+        val days = listOf("M","T","W","T","F","S","S")
+
+        for(i in 0..sameMonth){
+            root[i].apply {
+                val date = (monday.get(Calendar.DAY_OF_MONTH) + i).toString()
+                findViewById<TextView>(R.id.date_tv).text = date
+                findViewById<TextView>(R.id.day_label_tv).text = days[i]
+                findViewById<CardView>(R.id.day_card_view).tag = date
+            }
+        }
+
+        for (i in 6 downTo sameMonth+1){
+            root[i].apply {
+                val date = (sunday.get(Calendar.DAY_OF_MONTH) - 6 + i).toString()
+                findViewById<TextView>(R.id.date_tv).text = date
+                findViewById<TextView>(R.id.day_label_tv).text = days[i]
+                findViewById<CardView>(R.id.day_card_view).tag = date
+            }
+        }
+
         getWeeklyWorkouts(monday, sunday)
     }
 
@@ -84,8 +119,8 @@ class StatisticsViewModel @Inject constructor(
         for (date in weeklyWorkouts.value!!) {
             val calendar = Calendar.getInstance()
             calendar.time = date
-            val day = calendar.get(Calendar.DAY_OF_WEEK)
-            val card = calendarView.root.findViewWithTag(day) as CardView
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            val card = calendarView.root.findViewWithTag<CardView>(day.toString())
             card.setCardBackgroundColor(
                 ContextCompat.getColor(
                     context,
@@ -95,6 +130,13 @@ class StatisticsViewModel @Inject constructor(
             val textView = card.getChildAt(0) as TextView
             textView.setTextColor(context.getColor(R.color.secondaryDarkColor))
         }
+        val goal = getWeeklyGoal()
+        calendarView.goalTextView.text = SpannableStringBuilder()
+            .append("${weeklyWorkouts.value?.size?:0}/")
+            .color(ContextCompat.getColor(context,R.color.secondaryDarkColor)){
+                append(goal.toString())
+            }
+            .append(" Keep Going!")
     }
 
 }

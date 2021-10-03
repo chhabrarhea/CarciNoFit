@@ -38,4 +38,7 @@
     <string name="we_recommend_atleast_3_days_a_week">We recommend atleast 3 days a Week.</string>
     <string name="cancel">Cancel</string>
     <string name="set">Set</string>
+    <string name="minutes">Minutes</string>
+    <string name="calories">Calories</string>
+    <string name="workouts">Workouts</string>
 </resources>

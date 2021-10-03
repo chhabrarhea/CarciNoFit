@@ -9,12 +9,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        >
+        android:fitsSystemWindows="true">
 
         <include
             android:id="@+id/header_image_view"
             layout="@layout/stats_header"
+            android:layout_margin="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -24,26 +24,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/header_image_view" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
             android:layout_below="@id/weekView"
             android:id="@+id/calorieChartRoot"
-            card_view:cardUseCompatPadding="true"
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_margin="10dp">
+            app:contentPadding="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
+                    android:id="@+id/calorieHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/calorieHeading"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"
                     android:text="Estimated Calories"
-                    android:layout_margin="10dp"/>
+                    style="@style/Body1"
+                    />
         <com.github.mikephil.charting.charts.BarChart
             android:layout_width="match_parent"
             android:layout_height="400dp"
@@ -56,21 +58,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
+            app:contentPadding="16dp"
             android:layout_below="@id/calorieChartRoot"
-            card_view:cardUseCompatPadding="true"
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_margin="10dp">
+            android:layout_margin="16dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
+                    android:id="@+id/durationHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/durationHeading"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"
                     android:text="Average Duration"
-                    android:layout_margin="10dp"/>
+                   style="@style/Body1" />
                 <com.github.mikephil.charting.charts.LineChart
                     android:layout_width="match_parent"
                     android:layout_height="400dp"

@@ -1,96 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    card_view:cardUseCompatPadding="true"
 
-    card_view:cardCornerRadius="20dp">
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        >
-        <ImageView
-            android:layout_width="75dp"
-            android:layout_height="65dp"
-            android:id="@+id/image"
-            android:src="@drawable/stats_header"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            android:layout_marginStart="10dp"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/image"
-            android:baselineAligned="false">
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/workouts">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/secondaryDarkColor"
-            tools:text="811"
-            android:layout_centerHorizontal="true"
-            android:textSize="22sp"
-            android:id="@+id/workoutsTv"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/workoutsTv"
-            android:id="@+id/workoutsTitle"
-            android:layout_centerHorizontal="true"
-            android:text="Workouts"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/calories">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/secondaryDarkColor"
-                tools:text="11023"
-                android:layout_centerHorizontal="true"
-                android:textSize="22sp"
-                android:id="@+id/caloriesTv"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/caloriesTv"
-                android:layout_centerHorizontal="true"
-                android:text="Calories"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/minutes">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/secondaryDarkColor"
-                tools:text="811"
-                android:layout_centerHorizontal="true"
-                android:textSize="22sp"
-                android:id="@+id/minutesTv"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/minutesTv"
-                android:layout_centerHorizontal="true"
-                android:text="Minutes"/>
-        </RelativeLayout>
-        </LinearLayout>
-    </RelativeLayout>
+        card_view:cardCornerRadius="20dp">
 
-</androidx.cardview.widget.CardView>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="75dp"
+                android:layout_height="65dp"
+                android:src="@drawable/stats_header" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/image"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <RelativeLayout
+                    android:id="@+id/workouts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/workoutsTv"
+
+                        style="@style/Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/secondaryDarkColor"
+                        android:textSize="24sp"
+                        tools:text="811" />
+
+                    <TextView
+                        android:id="@+id/workoutsTitle"
+                        style="@style/Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/workoutsTv"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/workouts" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/calories"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/caloriesTv"
+                        style="@style/Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/secondaryDarkColor"
+                        android:textSize="24sp"
+                        tools:text="11023" />
+
+                    <TextView
+                        style="@style/Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/caloriesTv"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/calories" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/minutes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/minutesTv"
+                        style="@style/Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/secondaryDarkColor"
+                        android:textSize="24sp"
+                        tools:text="811" />
+
+                    <TextView
+                        style="@style/Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/minutesTv"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/minutes" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 </layout>
