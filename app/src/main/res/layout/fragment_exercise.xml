@@ -49,19 +49,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/gif"
             android:layout_centerHorizontal="true"
+            tools:visibility="visible"
             android:visibility="gone">
 
             <TextView
                 android:id="@+id/header_image_view"
+                style="@style/Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:setTextColor="@{routine.color}"
                 android:text="Ready To Go!"
                 android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/title"
@@ -69,12 +69,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/header_image_view"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
+                android:layout_margin="12dp"
                 android:text="@{exercise.name}"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:textSize="24sp"
+                style="@style/Headline1"
                 tools:text="Side Lateral Lunges" />
 
             <RelativeLayout
