@@ -16,8 +16,9 @@ import com.example.carcinofit.databinding.ExerciseDetailDialogBinding
 import com.example.carcinofit.databinding.FragmentRoutineDetailBinding
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RoutineDetailFragment : Fragment(), AppBarLayout.OnOffsetChangedListener {
     private val binding: FragmentRoutineDetailBinding by lazy {
         FragmentRoutineDetailBinding.inflate(layoutInflater, null, false)

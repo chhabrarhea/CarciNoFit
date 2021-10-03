@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
@@ -30,10 +31,13 @@ import java.util.*
 @AndroidEntryPoint
 class ExerciseFragment : Fragment(), TextToSpeech.OnInitListener {
     private lateinit var animatedCountdownDrawable: AnimatedVectorDrawableCompat
+
     private val binding: FragmentExerciseBinding by lazy {
         FragmentExerciseBinding.inflate(layoutInflater, null, false)
     }
-    private val viewModel: MainViewModel by viewModels()
+
+    private val viewModel: MainViewModel by activityViewModels()
+
     private var currentExercise = 0
     private val routine: Routine? by lazy { arguments?.getParcelable("routine") }
     private lateinit var exercises: List<Exercise>

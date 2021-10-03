@@ -11,7 +11,7 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:background="@color/primaryColor"
+            android:background="@color/secondaryDarkColor"
             android:fitsSystemWindows="true"
             android:title="@string/health_data"
             android:titleTextColor="@color/white" />
@@ -38,7 +38,7 @@
             android:hint="Enter Name"
             android:inputType="none"
             android:padding="7dp"
-            android:textColor="@color/primaryColor"
+            android:textColor="@color/secondaryColor"
             android:textSize="20sp" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_marginTop="-5dp"
             android:padding="6dp"
             android:text="0.00 KG"
-            android:textColor="@color/primaryColor"
+            android:textColor="@color/secondaryColor"
             android:textSize="20sp" />
 
         <TextView
@@ -85,7 +85,7 @@
             android:inputType="none"
             android:padding="7dp"
             android:text="0.00 CM"
-            android:textColor="@color/primaryColor"
+            android:textColor="@color/secondaryColor"
             android:textSize="20sp" />
 
         <TextView
@@ -109,7 +109,7 @@
             android:inputType="none"
             android:padding="7dp"
             android:text="1999-11-10"
-            android:textColor="@color/primaryColor"
+            android:textColor="@color/secondaryColor"
             android:textSize="20sp" />
 
         <Button

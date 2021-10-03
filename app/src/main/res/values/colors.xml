@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#25465d</color>
-    <color name="primaryLightColor">#52718a</color>
-    <color name="primaryDarkColor">#001f33</color>
+    <color name="primary">#CCCCCC</color>
+    <color name="medium_primary">#99000000</color>
+    <color name="high_primary">#DE000000</color>
     <color name="secondaryColor">#fa8d7c</color>
     <color name="secondaryLightColor">#ffbeab</color>
     <color name="secondaryDarkColor">#c45e50</color>
@@ -10,4 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dimGray">#696969</color>
     <color name="lightGray">#bdbdbd</color>
+    <color name="disabled_secondary">#66ffffff</color>
+    <color name="disabled_primary">#61000000</color>
 </resources>

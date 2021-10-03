@@ -7,25 +7,26 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        app:cardUseCompatPadding="true"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="16dp"
         app:cardCornerRadius="20dp">
 
         <RelativeLayout
+            android:id="@+id/rootRelativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rootRelativeLayout">
-            <ImageView
-                android:layout_width="match_parent"
-                android:id="@+id/header"
-                android:clickable="false"
-                android:layout_height="150dp"
-                android:scaleType="fitXY"
-                android:contentDescription="@string/running" />
+            android:layout_height="match_parent">
 
-            <TextView
+            <ImageView
+                android:id="@+id/header_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:clickable="false"
+                android:contentDescription="@string/running"
+                android:scaleType="fitXY" />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/heading"
+                style="@style/Headline1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -34,41 +35,40 @@
                 android:clickable="false"
                 android:elevation="10dp"
                 android:text="@string/running"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 tools:ignore="RelativeOverlap" />
 
             <TextView
                 android:id="@+id/duration"
+                style="@style/Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/heading"
                 android:layout_marginStart="15dp"
-                android:clickable="false"
                 android:layout_marginTop="7dp"
+                android:clickable="false"
+                android:textColor="@color/high_primary"
+                android:gravity="center_vertical"
                 android:drawablePadding="3dp"
-                tools:text="17 minutes"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_baseline_access_alarm_24"
                 app:drawableTint="@color/black"
-                app:drawableStartCompat="@drawable/ic_baseline_access_alarm_24" />
+                tools:text="17 minutes" />
 
             <TextView
                 android:id="@+id/calories"
+                style="@style/Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/duration"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:drawablePadding="3dp"
-                android:textAlignment="center"
-                tools:text="374"
                 android:clickable="false"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:drawablePadding="3dp"
+                android:gravity="center_vertical"
+                android:textAlignment="center"
+                android:textColor="@color/high_primary"
                 app:drawableStartCompat="@drawable/ic_fire"
-                app:drawableTint="@color/black" />
+                app:drawableTint="@color/black"
+                tools:text="374" />
 
 
         </RelativeLayout>

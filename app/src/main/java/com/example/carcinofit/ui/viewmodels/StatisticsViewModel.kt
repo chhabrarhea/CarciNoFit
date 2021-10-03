@@ -1,14 +1,11 @@
-package com.example.workoutapp.ui.viewmodels
+package com.example.carcinofit.ui.viewmodels
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.carcinofit.R
 import com.example.carcinofit.database.Repository
 import com.example.carcinofit.database.models.ChartStats
@@ -23,7 +20,7 @@ import javax.inject.Inject
 class StatisticsViewModel @Inject constructor(
     private val repository: Repository,
     private val sharedPreferences: SharedPreferences
-) : ViewModel() {
+) : ViewModel(), LifecycleObserver {
     private val weeklyWorkouts = MutableLiveData<List<Date>>()
     val workouts = weeklyWorkouts as LiveData<*>
     val caloriesBurned = MutableLiveData<List<ChartStats>>()

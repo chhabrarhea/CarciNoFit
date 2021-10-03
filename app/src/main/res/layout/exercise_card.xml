@@ -1,68 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
             name="exercise"
             type="com.example.carcinofit.database.models.Exercise" />
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:id="@+id/relativeRoot"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/exercise_text_view"
+            style="@style/Heading1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="10dp">
+            android:text="@{exercise.name}"
+            android:textColor="@color/black"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@id/duration"
+            app:layout_constraintEnd_toStartOf="@id/exerciseGif"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="SQUATS" />
 
-            <LinearLayout
-                android:id="@+id/linear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/exerciseGif"
-                android:orientation="vertical">
+        <TextView
+            android:id="@+id/duration"
+            style="@style/Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@id/exerciseGif"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/exercise_text_view"
+            tools:text="00:40" />
 
-                <TextView
-                    android:id="@+id/exerciseName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@{exercise.name}"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="SQUATS" />
-
-                <TextView
-                    android:id="@+id/duration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="00:40" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/exerciseGif"
-                imageUrl="@{exercise.image}"
-                isGif="@{exercise.isGif}"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:contentDescription="@string/running"
-                android:scaleType="fitXY" />
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/exerciseGif"
+            imageUrl="@{exercise.image}"
+            isGif="@{exercise.isGif}"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:contentDescription="@string/running"
+            android:scaleType="fitXY"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:layout_below="@id/relativeRoot"
-            android:layout_marginHorizontal="15dp"
-            android:background="@color/cardview_dark_background" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/exerciseGif"
+            android:background="@color/primary"/>
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

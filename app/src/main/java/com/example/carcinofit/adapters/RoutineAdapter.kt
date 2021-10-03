@@ -14,7 +14,7 @@ import com.google.firebase.storage.ktx.storage
 
 class RoutineAdapter(
     private val clickListener: (Routine) -> Unit
-) : ListAdapter<Routine, RoutineAdapter.RoutineViewHolder>(diffUtil) {
+) : ListAdapter <Routine, RoutineAdapter.RoutineViewHolder>(diffUtil) {
 
     class RoutineViewHolder(
         private val binding: RoutineCardBinding,
@@ -31,12 +31,12 @@ class RoutineAdapter(
             binding.rootRelativeLayout.setOnClickListener { clickListener(routine) }
             binding.heading.text = routine.name
             val ref = Firebase.storage.reference.child("headers").child(routine.image)
-            Glide.with(context).load(ref).into(binding.header)
+            Glide.with(context).load(ref).into(binding.headerImageView)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoutineViewHolder {
-        val binding = RoutineCardBinding.inflate(LayoutInflater.from(parent.context), null, false)
+        val binding = RoutineCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RoutineViewHolder(binding, clickListener)
     }
 

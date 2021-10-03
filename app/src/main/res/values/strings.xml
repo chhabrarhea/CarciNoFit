@@ -35,4 +35,7 @@
     <string name="stats">Stats</string>
     <string name="info">Info</string>
     <string name="health_data">Health Data</string>
+    <string name="we_recommend_atleast_3_days_a_week">We recommend atleast 3 days a Week.</string>
+    <string name="cancel">Cancel</string>
+    <string name="set">Set</string>
 </resources>

@@ -13,7 +13,7 @@
         >
 
         <include
-            android:id="@+id/header"
+            android:id="@+id/header_image_view"
             layout="@layout/stats_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -23,7 +23,7 @@
             layout="@layout/week_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/header" />
+            android:layout_below="@id/header_image_view" />
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

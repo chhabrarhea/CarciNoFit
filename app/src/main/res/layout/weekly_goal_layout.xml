@@ -2,11 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.example.carcinofit.ui.viewmodels.ProfileViewModel" />
     </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,21 +17,22 @@
 
         <TextView
             android:id="@+id/weightHeading"
+            style="@style/Headline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="20dp"
-            android:text="@string/weeklyGoalHeading"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:text="@string/weeklyGoalHeading" />
+
         <TextView
+            android:id="@+id/recommendTv"
+            style="@style/Caption1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="We recommend atleast 3 days a Week."
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="20dp"
             android:layout_below="@id/weightHeading"
-            android:id="@+id/recommendTv"/>
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/we_recommend_atleast_3_days_a_week" />
 
         <ImageButton
             android:id="@+id/decrementBtn"
@@ -40,22 +44,22 @@
             android:layout_toStartOf="@id/durTv"
             android:background="@android:color/transparent"
             android:clickable="false"
-            android:onClick="@{()->viewModel.decrementWeeklyGoal()}"
             android:contentDescription="@string/decrement"
-            android:padding="10dp"
+            android:onClick="@{()->viewModel.decrementWeeklyGoal()}"
+            android:padding="8dp"
             android:src="@drawable/ic_baseline_remove_24"
             app:tint="@color/dimGray" />
 
         <TextView
             android:id="@+id/durTv"
+            style="@style/Headline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/recommendTv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:text="@={viewModel.weeklyGoalText}"
-            android:textColor="@color/black"
-            android:textSize="33sp"
+            android:textSize="32sp"
             tools:text="3" />
 
         <ImageButton
@@ -70,7 +74,7 @@
             android:clickable="false"
             android:contentDescription="@string/increment"
             android:onClick="@{()->viewModel.incrementWeeklyGoal()}"
-            android:padding="10dp"
+            android:padding="8dp"
             android:src="@drawable/ic_baseline_add_24"
             app:tint="@color/dimGray" />
 
@@ -80,23 +84,23 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/durTv"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
-            android:text="Set"
+            android:text="@string/set"
+            style="@style/ButtonText1"
             android:textColor="@color/secondaryColor" />
 
         <Button
+            android:id="@+id/cancelBtn"
+            style="@style/ButtonText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/durTv"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="20dp"
             android:layout_toStartOf="@id/setBtn"
             android:background="@android:color/transparent"
-            android:text="Cancel"
-            android:id="@+id/cancelBtn"
+            android:text="@string/cancel"
             android:textColor="@color/black" />
-
-
     </RelativeLayout>
 </layout>

@@ -52,7 +52,7 @@
             android:visibility="gone">
 
             <TextView
-                android:id="@+id/header"
+                android:id="@+id/header_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -67,7 +67,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/header"
+                android:layout_below="@id/header_image_view"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
                 android:text="@{exercise.name}"
@@ -115,13 +115,14 @@
 
             <TextView
                 android:id="@+id/secondsPassedTv"
+                style="@style/Heading1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/exerciseTitle"
-                android:layout_marginStart="15dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="4dp"
                 android:setTextColor="@{routine.color}"
-                android:textSize="42sp"
+                android:textSize="44sp"
                 android:textStyle="bold"
                 tools:text="0''" />
 
@@ -132,8 +133,8 @@
                 android:layout_above="@id/exerciseTitle"
                 android:layout_marginBottom="5dp"
                 android:layout_toEndOf="@id/secondsPassedTv"
-                android:textSize="35sp"
-                android:textStyle="bold"
+                android:textSize="36sp"
+                style="@style/Heading1"
                 tools:text="/40''" />
 
 
@@ -146,9 +147,7 @@
                 android:layout_marginBottom="20dp"
                 android:text="@{exercise.name}"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                style="@style/Headline1"
                 tools:text="Side Lateral Lunges" />
 
             <RelativeLayout

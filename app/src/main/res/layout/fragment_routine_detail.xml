@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="routine"
             type="com.example.carcinofit.database.models.Routine" />
@@ -15,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragments.RoutineDetailFragment">
-
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -34,89 +30,90 @@
                 app:contentScrim="@android:color/transparent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <RelativeLayout
-                    android:id="@+id/rootRelativeLayout"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_collapseMode="parallax">
+                    android:layout_height="wrap_content">
 
-                    <RelativeLayout
-                        android:id="@+id/imageRoot"
+                    <ImageView
+                        android:id="@+id/header_image_view"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="180dp"
+                        android:contentDescription="@string/running"
+                        android:loadImageWithGlide="@{routine.image}"
+                        android:scaleType="fitXY"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/header"
-                            android:layout_width="match_parent"
-                            android:layout_height="180dp"
-                            android:contentDescription="@string/running"
-                            android:loadImageWithGlide="@{routine.image}"
-                            android:scaleType="fitXY" />
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="15dp"
-                            android:clickable="false"
-                            android:elevation="10dp">
-
-                            <TextView
-                                android:id="@+id/heading"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
-                                android:text="@{routine.name}"
-                                android:textColor="@color/black"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                tools:ignore="RelativeOverlap" />
-
-                            <TextView
-                                android:id="@+id/duration"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/heading"
-                                android:layout_marginStart="15dp"
-                                android:layout_marginTop="5dp"
-                                android:drawablePadding="3dp"
-                                android:setIntegerText="@{routine.duration}"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
-                                app:drawableStartCompat="@drawable/ic_baseline_access_alarm_24"
-                                app:drawableTint="@color/black" />
-
-                            <TextView
-                                android:id="@+id/calories"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/duration"
-                                android:layout_marginStart="15dp"
-                                android:layout_marginTop="5dp"
-                                android:drawablePadding="3dp"
-                                android:setIntegerText="@{routine.caloriesBurned}"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
-                                app:drawableStartCompat="@drawable/ic_fire"
-                                app:drawableTint="@color/black" />
-                        </RelativeLayout>
-                    </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/desc"
-                        android:layout_width="match_parent"
+                        android:id="@+id/heading_text_view"
+                        style="@style/Heading1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/imageRoot"
-                        android:layout_marginHorizontal="3dp"
-                        android:padding="5dp"
+                        android:layout_marginStart="16dp"
+                        android:text="@{routine.name}"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toTopOf="@id/duration_text_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:ignore="RelativeOverlap"
+                        tools:text="Fat Burning" />
+
+                    <TextView
+                        android:id="@+id/duration_text_view"
+                        style="@style/Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:drawablePadding="4dp"
+                        android:gravity="center_vertical"
+                        android:setIntegerText="@{routine.duration}"
+                        android:textColor="@color/black"
+                        app:drawableStartCompat="@drawable/ic_baseline_access_alarm_24"
+                        app:drawableTint="@color/high_primary"
+                        app:layout_constraintBottom_toTopOf="@id/calories_text_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/heading_text_view"
+                        tools:text="30 mins" />
+
+                    <TextView
+                        android:id="@+id/calories_text_view"
+                        style="@style/Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:drawablePadding="4dp"
+                        android:gravity="center_vertical"
+                        android:setIntegerText="@{routine.caloriesBurned}"
+                        android:textColor="@color/black"
+                        app:drawableStartCompat="@drawable/ic_fire"
+                        app:drawableTint="@color/high_primary"
+                        app:layout_constraintBottom_toBottomOf="@id/header_image_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/duration_text_view"
+                        tools:text="340" />
+
+                    <TextView
+                        android:id="@+id/desc_text_view"
+                        style="@style/Caption1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="16dp"
+                        android:gravity="center"
+                        android:padding="4dp"
                         android:text="@{routine.desc}"
                         android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-
-                </RelativeLayout>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/header_image_view"
+                        tools:text="For a stronger gut" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -131,18 +128,33 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-        <Button
-            android:id="@+id/startBtn"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="4dp"
+            tools:listitem="@layout/exercise_card"
+            tools:itemCount="2"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:paddingBottom="16dp"/>
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_margin="10dp"
+            app:layout_anchor="@id/recyclerView"
+            app:layout_anchorGravity="bottom"
+            android:background="@color/white">
+
+        <Button
+            style="@style/ButtonPrimary"
+            android:id="@+id/startBtn"
             android:setButtonBackgroundColor="@{routine.color}"
-            android:text="@string/start" />
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/start"/>
+        </FrameLayout>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

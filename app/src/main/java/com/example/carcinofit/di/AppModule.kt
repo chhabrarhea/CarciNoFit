@@ -1,6 +1,7 @@
 package com.example.carcinofit.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.carcinofit.database.WorkoutDatabase
 import com.example.carcinofit.other.Constants
@@ -31,6 +32,6 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun getSharedPreferences(@ApplicationContext context: Context) =
+    fun getSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
         context.getSharedPreferences("WorkOutUserDetails", Context.MODE_PRIVATE)
 }

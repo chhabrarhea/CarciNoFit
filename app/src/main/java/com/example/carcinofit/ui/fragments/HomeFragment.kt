@@ -1,7 +1,9 @@
 package com.example.carcinofit.ui.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,13 +24,17 @@ class HomeFragment : Fragment() {
         RoutineAdapter{ item: Routine -> routineClickListener((item)) }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View{
         adapter.submitList(RoutineData.routines)
         binding.recyclerView.apply {
             this.adapter = this@HomeFragment.adapter
             layoutManager = LinearLayoutManager(requireContext())
         }
+        return binding.root
     }
 
     private fun routineClickListener(routine: Routine) {

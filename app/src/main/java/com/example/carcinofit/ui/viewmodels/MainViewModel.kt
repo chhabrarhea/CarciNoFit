@@ -3,6 +3,7 @@ package com.example.carcinofit.ui.viewmodels
 
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,7 +21,7 @@ import javax.inject.Inject
 class MainViewModel@Inject constructor(
     private val repository: Repository,
     private val sharedPreferences: SharedPreferences
-): ViewModel() {
+): ViewModel(), LifecycleObserver {
 
     val monthlyWorkouts= MutableLiveData<List<Workout>>()
     fun insertWorkout(category:Int,absoluteDate: Date,duration: Long,calories:Int,speed:Float=0f,dist:Int=0,img:Bitmap?=null){

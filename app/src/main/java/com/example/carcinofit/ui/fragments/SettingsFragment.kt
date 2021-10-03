@@ -10,10 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.carcinofit.R
 import com.example.carcinofit.databinding.FragmentSettingsBinding
 import com.example.carcinofit.databinding.HwDialogBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+@AndroidEntryPoint
 class SettingsFragment : Fragment() {
     private val binding: FragmentSettingsBinding by lazy {
         FragmentSettingsBinding.inflate(layoutInflater, null, false)

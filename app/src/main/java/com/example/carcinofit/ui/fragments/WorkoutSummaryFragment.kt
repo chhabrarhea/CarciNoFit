@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.carcinofit.R
 import com.example.carcinofit.databinding.FragmentWorkoutSummaryBinding
+import dagger.hilt.android.AndroidEntryPoint
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 
-
+@AndroidEntryPoint
 class WorkoutSummaryFragment : Fragment() {
+
     private val binding: FragmentWorkoutSummaryBinding by lazy {
         FragmentWorkoutSummaryBinding.inflate(layoutInflater, null, false)
     }

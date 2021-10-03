@@ -19,16 +19,16 @@ class InfoFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
     private val binding: FragmentInfoBinding by lazy {
         FragmentInfoBinding.inflate(layoutInflater, null, false)
     }
-    private val viewModel: InfoViewModel by viewModels()
+    private val vm: InfoViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            viewModel = this@InfoFragment.viewModel
+            viewModel = vm
             lifecycleOwner = this@InfoFragment
             heightSeekBar.setOnSeekBarChangeListener(this@InfoFragment)
-            heightSeekBar.progress = viewModel.getProgressBarProgress()
-            saveBtn.setOnClickListener { viewModel.saveData() }
+            heightSeekBar.progress = vm.getProgressBarProgress()
+            saveBtn.setOnClickListener { vm.saveData() }
             maleCard.setOnClickListener { toggleGender(0) }
             femaleCard.setOnClickListener { toggleGender(1) }
             setGender()
@@ -36,7 +36,7 @@ class InfoFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
     }
 
     private fun toggleGender(i: Int) {
-        val card = binding.genderRoot.getChildAt(viewModel.gender) as CardView
+        val card = binding.genderRoot.getChildAt(vm.gender) as CardView
         card.setCardBackgroundColor(Color.WHITE)
         val card1 = binding.genderRoot.getChildAt(i) as CardView
         card1.setCardBackgroundColor(
@@ -45,11 +45,11 @@ class InfoFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
                 R.color.secondaryLightColor
             )
         )
-        viewModel.gender = i
+        vm.gender = i
     }
 
     private fun setGender() {
-        val card = binding.genderRoot.getChildAt(viewModel.gender) as CardView
+        val card = binding.genderRoot.getChildAt(vm.gender) as CardView
         card.setCardBackgroundColor(
             ContextCompat.getColor(
                 requireContext(),
@@ -59,7 +59,7 @@ class InfoFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
     }
 
     override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-        viewModel.progressHeight(p1)
+        vm.progressHeight(p1)
     }
 
     override fun onStartTrackingTouch(p0: SeekBar?) {}

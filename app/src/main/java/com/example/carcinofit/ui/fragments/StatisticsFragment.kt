@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import com.example.carcinofit.R
 import com.example.carcinofit.databinding.FragmentStatisticsBinding
 import com.example.carcinofit.other.CustomAxisFormatter
-import com.example.workoutapp.ui.viewmodels.StatisticsViewModel
+import com.example.carcinofit.ui.viewmodels.StatisticsViewModel
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
@@ -54,9 +54,9 @@ class StatisticsFragment : Fragment() {
             setBarData(allEntries)
         })
         viewModel.totalData.observe(viewLifecycleOwner, {
-            binding.header.caloriesTv.text = it.calories.toString()
-            binding.header.minutesTv.text = it.total_time.toString()
-            binding.header.workoutsTv.text = it.workouts.toString()
+            binding.headerImageView.caloriesTv.text = it.calories.toString()
+            binding.headerImageView.minutesTv.text = it.total_time.toString()
+            binding.headerImageView.workoutsTv.text = it.workouts.toString()
         })
     }
 
