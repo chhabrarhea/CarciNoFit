@@ -1,16 +1,23 @@
 package com.example.carcinofit.ui.fragments
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carcinofit.R
+import com.example.carcinofit.databinding.DialogGenericBinding
 import com.example.carcinofit.other.Constants.ACTION_PAUSE_SERVICE
 import com.example.carcinofit.other.Constants.ACTION_START_OR_RESUME_SERVICE
 import com.example.carcinofit.other.Constants.ACTION_STOP_SERVICE
@@ -30,13 +37,15 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_run_track.*
+import kotlinx.android.synthetic.main.fragment_settings.view.*
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
+import timber.log.Timber
 import java.util.*
 import kotlin.math.roundToInt
 
 @AndroidEntryPoint
-class RunTrackFragment : Fragment(), EasyPermissions.PermissionCallbacks {
+class RunTrackFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private var isTracking = false
@@ -44,6 +53,15 @@ class RunTrackFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private var map: GoogleMap? = null
     private var curTimeInMillis = 0L
     private var weight = 80
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            if (permissions.containsValue(false)) {
+
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +72,7 @@ class RunTrackFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mapView.onCreate(savedInstanceState)
-        requestPermissions()
+        checkPermissions()
         mapView.getMapAsync {
             map = it
             drawAllPolyLines()
@@ -86,13 +104,15 @@ class RunTrackFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     private fun zoomToSeeWholeTrack() {
+        if(pathPoints.isEmpty() || pathPoints[0].isEmpty())
+            return
         val bounds = LatLngBounds.Builder()
         for (polyline in pathPoints) {
             for (pos in polyline) {
                 bounds.include(pos)
+                Timber.i(pos.toString())
             }
         }
-
         map?.moveCamera(
             CameraUpdateFactory.newLatLngBounds(
                 bounds.build(),
@@ -104,11 +124,15 @@ class RunTrackFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     private fun endRunAndSaveToDb() {
-        zoomToSeeWholeTrack()
+            zoomToSeeWholeTrack()
         map?.snapshot { bmp ->
             var distanceInMeters = 0
             for (polyline in pathPoints) {
                 distanceInMeters += TrackingUtility.calculatePolylineLength(polyline).toInt()
+            }
+            if(distanceInMeters < 500) {
+                showShortDialog()
+                return@snapshot
             }
             val avgSpeed =
                 ((distanceInMeters / 1000f) / (curTimeInMillis / 1000f / 60 / 60) * 10).roundToInt() / 10f
@@ -132,6 +156,31 @@ class RunTrackFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
+    private fun showShortDialog() {
+        val dialogBinding = DialogGenericBinding.inflate(layoutInflater, null, false)
+        val alertDialog = MaterialAlertDialogBuilder(requireContext()).create()
+        dialogBinding.captionTv.text = "Cannot store runs shorter than 500m"
+        dialogBinding.confirmButton.apply {
+            text = "Continue"
+            setOnClickListener {
+                alertDialog.dismiss()
+            }
+        }
+        dialogBinding.cancelButton.apply {
+            text = "Abort"
+            setOnClickListener {
+                stopRun()
+                alertDialog.dismiss()
+            }
+        }
+        alertDialog.apply {
+            window?.setBackgroundDrawableResource(android.R.color.transparent)
+            setView(dialogBinding.root)
+            setCancelable(false)
+        }
+        alertDialog.show()
+    }
+
 
     private fun subscribeToTrackingService() {
         TrackingService.pathPoints.observe(viewLifecycleOwner, {
@@ -152,16 +201,16 @@ class RunTrackFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private fun updateTracking(isTracking: Boolean) {
         this.isTracking = isTracking
         if (!isTracking) {
-            btnToggleRun.text = "Start"
+            btnToggleRun.text = getString(R.string.start)
             btnFinishRun.visibility = View.VISIBLE
         } else {
-            btnToggleRun.text = "Stop"
+            btnToggleRun.text = getString(R.string.stop)
             btnFinishRun.visibility = View.GONE
         }
     }
 
     private fun toggleRun() {
-        cancelBtn.visibility = View.VISIBLE
+        btnFinishRun.isVisible = true
         if (isTracking) {
             sendCommandToService(ACTION_PAUSE_SERVICE)
         } else {
@@ -192,10 +241,9 @@ class RunTrackFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     private fun sendCommandToService(action: String) {
-        Intent(requireContext(), TrackingService::class.java).also {
+        requireContext().startService(Intent(requireContext(), TrackingService::class.java).also {
             it.action = action
-            requireContext().startService(it)
-        }
+        })
     }
 
 
@@ -212,45 +260,10 @@ class RunTrackFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
-    private fun requestPermissions() {
-        if (TrackingUtility.hasLocationPermissions(requireContext()))
-            return
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            EasyPermissions.requestPermissions(
-                this,
-                "You need to accept location permissions to use this feature.",
-                REQUEST_CODE_LOCATION_PERMISSION,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-        } else {
-            EasyPermissions.requestPermissions(
-                this,
-                "You need to accept location permissions to use this feature.",
-                REQUEST_CODE_LOCATION_PERMISSION,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION
-            )
+    private fun checkPermissions() {
+        if (!TrackingUtility.hasLocationPermissions(requireContext())) {
+            requestPermissionLauncher.launch(TrackingUtility.locationPermissions())
         }
-    }
-
-    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {}
-
-    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
-        if (EasyPermissions.somePermissionPermanentlyDenied(requireActivity(), perms))
-            AppSettingsDialog.Builder(this).build().show()
-        else
-            requestPermissions()
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
     override fun onResume() {

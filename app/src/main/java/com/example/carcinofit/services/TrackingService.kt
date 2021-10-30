@@ -38,6 +38,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 //inheriting from lifeCycleService so that we can pass this service as owner of our liveData object.
@@ -78,6 +79,7 @@ class TrackingService : LifecycleService() {
 
     override fun onCreate() {
         super.onCreate()
+        Timber.i("onCreate")
         postInitialValues()
         curNotificationBuilder = baseNotificationBuilder
         fusedLocationProviderClient = FusedLocationProviderClient(this)
@@ -180,12 +182,11 @@ class TrackingService : LifecycleService() {
     } ?: pathPoints.postValue(mutableListOf(mutableListOf()))
 
     private fun startForegroundService() {
+        Timber.i("start")
         startTimer()
         val nManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel(nManager)
-        }
+        createNotificationChannel(nManager)
         startForeground(NOTIFICATION_ID, baseNotificationBuilder.build())
         timeRunInSeconds.observe(this, {
             if (!serviceKilled) {

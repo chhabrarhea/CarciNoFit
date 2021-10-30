@@ -90,7 +90,7 @@ class StatisticsViewModel @Inject constructor(
                 day - dayOfWeek + 2
             )
         }
-        val sameMonth = daysInMonth - monday.get(Calendar.DAY_OF_MONTH)
+        val sameMonth = if(daysInMonth - monday.get(Calendar.DAY_OF_MONTH)>= 6) 6 else daysInMonth - monday.get(Calendar.DAY_OF_MONTH)
         val root = calendarView.linearRoot
         val days = listOf("M","T","W","T","F","S","S")
 

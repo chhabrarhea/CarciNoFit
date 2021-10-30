@@ -6,7 +6,6 @@
     <string name="exercises">Exercises</string>
     <string name="kg">KG</string>
     <string name="cm">CM</string>
-    <string name="start">Start</string>
     <string name="obliques">Obliques</string>
     <string name="running">Running</string>
     <string name="fat_burning">Fat Burning</string>
@@ -41,4 +40,8 @@
     <string name="minutes">Minutes</string>
     <string name="calories">Calories</string>
     <string name="workouts">Workouts</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

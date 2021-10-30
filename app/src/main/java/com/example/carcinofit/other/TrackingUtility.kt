@@ -2,27 +2,32 @@ package com.example.carcinofit.other
 
 import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
+import androidx.core.content.ContextCompat
 import com.example.carcinofit.services.PolyLine
 import pub.devrel.easypermissions.EasyPermissions
 import java.util.concurrent.TimeUnit
 
 object TrackingUtility {
-    fun hasLocationPermissions(context: Context) =
+    fun locationPermissions() =
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            EasyPermissions.hasPermissions(
-                context,
+            arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             )
         } else {
-            EasyPermissions.hasPermissions(
-                context,
+            arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION
             )
+        }
+
+    fun hasLocationPermissions(context: Context) =
+        locationPermissions().all {
+            ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
         }
 
     fun calculatePolylineLength(polyline: PolyLine): Float {
