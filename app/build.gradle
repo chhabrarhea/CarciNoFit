@@ -12,6 +12,16 @@ android {
     compileSdkVersion 31
     buildToolsVersion "29.0.3"
 
+    signingConfigs {
+        release {
+            storeFile file("keystores/myKeystore.jks")
+            storePassword "carcinofit"
+            keyAlias "key0"
+            keyPassword "carcinofit"
+        }
+    }
+
+
     defaultConfig {
         applicationId "com.example.carcinofit"
         minSdkVersion 26
