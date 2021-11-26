@@ -6,6 +6,11 @@ import com.example.carcinofit.other.AppSignatureHelper
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+//todo
+// cameraX
+// Retrofit with Hilt
+// Floating action button in middle of bottom navigation (the functionality is provided by android only)
+// Api for Carcino Feature
 
 @HiltAndroidApp
 class BaseApplication : Application() {
