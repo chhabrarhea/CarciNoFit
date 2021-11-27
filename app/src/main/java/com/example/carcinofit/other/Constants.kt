@@ -3,6 +3,8 @@ package com.example.carcinofit.other
 import android.graphics.Color
 
 object Constants {
+    const val dummyURL="https://jsonplaceholder.typicode.com/"
+
     const val WORKOUT_DATABASE_NAME = "work_db"
     const val  REQUEST_CODE_LOCATION_PERMISSION=10
     const val ACTION_START_OR_RESUME_SERVICE = "ACTION_START_OR_RESUME_SERVICE"
