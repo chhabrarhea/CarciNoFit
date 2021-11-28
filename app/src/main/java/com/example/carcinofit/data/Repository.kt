@@ -1,6 +1,7 @@
-package com.example.carcinofit.database
+package com.example.carcinofit.data
 
 
+import com.example.carcinofit.data.local.WorkoutDAO
 import com.example.workoutapp.database.models.Workout
 import java.util.*
 import javax.inject.Inject

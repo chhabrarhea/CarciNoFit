@@ -1,4 +1,4 @@
-package com.example.carcinofit.database.models
+package com.example.carcinofit.data.local.models
 
 object RoutineData  {
     private fun getObliqueExercises():ArrayList<Exercise>{

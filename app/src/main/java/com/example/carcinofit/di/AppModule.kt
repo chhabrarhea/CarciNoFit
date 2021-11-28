@@ -3,7 +3,7 @@ package com.example.carcinofit.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-import com.example.carcinofit.database.WorkoutDatabase
+import com.example.carcinofit.data.local.WorkoutDatabase
 import com.example.carcinofit.other.Constants
 import dagger.Module
 import dagger.Provides

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.carcinofit.database.models.Routine
+import com.example.carcinofit.data.local.models.Routine
 import com.example.carcinofit.databinding.RoutineCardBinding
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage

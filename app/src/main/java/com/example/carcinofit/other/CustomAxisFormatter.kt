@@ -1,6 +1,6 @@
 package com.example.carcinofit.other
 
-import com.example.carcinofit.database.models.ChartStats
+import com.example.carcinofit.data.local.models.ChartStats
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import java.text.SimpleDateFormat
 import java.util.*

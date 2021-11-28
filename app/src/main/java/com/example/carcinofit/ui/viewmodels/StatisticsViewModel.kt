@@ -3,8 +3,6 @@ package com.example.carcinofit.ui.viewmodels
 import android.content.Context
 import android.content.SharedPreferences
 import android.text.SpannableStringBuilder
-import android.util.Log
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -12,9 +10,8 @@ import androidx.core.text.color
 import androidx.core.view.get
 import androidx.lifecycle.*
 import com.example.carcinofit.R
-import com.example.carcinofit.database.Repository
-import com.example.carcinofit.database.models.ChartStats
-import com.example.carcinofit.databinding.ListItemWeekviewBinding
+import com.example.carcinofit.data.Repository
+import com.example.carcinofit.data.local.models.ChartStats
 import com.example.carcinofit.databinding.WeekViewBinding
 import com.example.carcinofit.other.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -39,7 +36,7 @@ class StatisticsViewModel @Inject constructor(
         }
     }
 
-    fun getWeeklyGoal(): Int = sharedPreferences.getInt(Constants.userWeeklyGoal, 3)
+    private fun getWeeklyGoal(): Int = sharedPreferences.getInt(Constants.userWeeklyGoal, 3)
 
     private fun getWeeklyWorkouts(mon: Calendar, sun: Calendar) {
         mon.set(Calendar.HOUR, 0)

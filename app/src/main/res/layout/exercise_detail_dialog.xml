@@ -7,7 +7,7 @@
 
         <variable
             name="exercise"
-            type="com.example.carcinofit.database.models.Exercise" />
+            type="com.example.carcinofit.data.local.models.Exercise" />
     </data>
 
     <RelativeLayout

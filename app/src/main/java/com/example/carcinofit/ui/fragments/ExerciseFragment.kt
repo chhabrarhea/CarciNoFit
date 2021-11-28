@@ -12,14 +12,13 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.bumptech.glide.Glide
 import com.example.carcinofit.R
-import com.example.carcinofit.database.models.Exercise
-import com.example.carcinofit.database.models.Routine
+import com.example.carcinofit.data.local.models.Exercise
+import com.example.carcinofit.data.local.models.Routine
 import com.example.carcinofit.databinding.FragmentExerciseBinding
 import com.example.carcinofit.other.Timer
 import com.example.carcinofit.ui.viewmodels.MainViewModel
