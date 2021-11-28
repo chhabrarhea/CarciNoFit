@@ -1,7 +1,7 @@
 package com.example.carcinofit.di
 
-import com.example.carcinofit.api.ApiServiceInterface
-import com.example.carcinofit.api.repository.ApiRepository
+import com.example.carcinofit.data.remote.ApiServiceInterface
+import com.example.carcinofit.data.remote.repository.ApiRepository
 import com.example.carcinofit.other.Constants
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -18,12 +18,11 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAPIInstanceService(): Retrofit { // stays as long as app is alive cause i declared it 'Singleton'
+    fun provideAPIInstanceService(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.dummyURL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build()
-
     }
 
     @Singleton
@@ -39,6 +38,4 @@ object NetworkModule {
     ): ApiRepository {
         return ApiRepository(apiService)
     }
-
-
 }

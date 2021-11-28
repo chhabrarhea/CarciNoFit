@@ -1,17 +1,11 @@
 package com.example.carcinofit.ui.fragments
 
-import android.Manifest
-import android.app.AlertDialog
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,7 +18,6 @@ import com.example.carcinofit.other.Constants.ACTION_STOP_SERVICE
 import com.example.carcinofit.other.Constants.MAP_ZOOM
 import com.example.carcinofit.other.Constants.POLYLINE_COLOR
 import com.example.carcinofit.other.Constants.POLYLINE_WIDTH
-import com.example.carcinofit.other.Constants.REQUEST_CODE_LOCATION_PERMISSION
 import com.example.carcinofit.other.TrackingUtility
 import com.example.carcinofit.services.PolyLine
 import com.example.carcinofit.services.TrackingService
@@ -38,8 +31,6 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_run_track.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
-import pub.devrel.easypermissions.AppSettingsDialog
-import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
 import java.util.*
 import kotlin.math.roundToInt
