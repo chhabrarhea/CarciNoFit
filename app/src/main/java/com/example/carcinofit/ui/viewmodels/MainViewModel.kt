@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carcinofit.data.Repository
-import com.example.workoutapp.database.models.Workout
 import com.example.carcinofit.other.Constants
+import com.example.workoutapp.database.models.Workout
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,7 +47,7 @@ class MainViewModel@Inject constructor(
         val date1=sdf.parse("$mo/01/$year 00:00:00")
         val date2=sdf.parse("$mo/31/$year 23:59:59")
         viewModelScope.launch(Dispatchers.IO) {
-        monthlyWorkouts.value=(repository.getMonthlyWorkouts(date1!!,date2!!))
+            monthlyWorkouts.postValue(repository.getMonthlyWorkouts(date1!!, date2!!))
     }}
 
     fun deleteWorkouts(){
@@ -56,5 +56,5 @@ class MainViewModel@Inject constructor(
         }
     }
 
-    fun getRestSet():Int=sharedPreferences.getInt(Constants.userRestTime,10)
+    fun getRestSet(): Int = sharedPreferences.getInt(Constants.userRestTime, 10)
 }

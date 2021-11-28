@@ -22,15 +22,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".services.TrackingService"
-            android:enabled="true"/>
+        <service
+            android:name=".services.TrackingService"
+            android:enabled="true"
+            android:foregroundServiceType="location" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBqRevhUP0jTCWua--gkMGc70ajPP3ncs4" />
+            android:value="AIzaSyDPQP6W5rqYILRhnuZVpA1g--_FswB2M3k" />
     </application>
 
 </manifest>

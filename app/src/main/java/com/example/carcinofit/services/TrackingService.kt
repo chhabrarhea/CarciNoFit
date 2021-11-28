@@ -11,11 +11,11 @@ import android.content.Intent
 import android.location.Location
 import android.os.Build
 import android.os.Looper
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.MutableLiveData
+import com.example.carcinofit.R
 import com.example.carcinofit.other.Constants.ACTION_PAUSE_SERVICE
 import com.example.carcinofit.other.Constants.ACTION_START_OR_RESUME_SERVICE
 import com.example.carcinofit.other.Constants.ACTION_STOP_SERVICE
@@ -26,7 +26,6 @@ import com.example.carcinofit.other.Constants.NOTIFICATION_CHANNEL_NAME
 import com.example.carcinofit.other.Constants.NOTIFICATION_ID
 import com.example.carcinofit.other.Constants.TIMER_UPDATE_INTERVAL
 import com.example.carcinofit.other.TrackingUtility
-import com.example.carcinofit.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -79,7 +78,6 @@ class TrackingService : LifecycleService() {
 
     override fun onCreate() {
         super.onCreate()
-        Timber.i("onCreate")
         postInitialValues()
         curNotificationBuilder = baseNotificationBuilder
         fusedLocationProviderClient = FusedLocationProviderClient(this)
@@ -113,13 +111,13 @@ class TrackingService : LifecycleService() {
     }
 
     private val locationCallback = object : LocationCallback() {
-        override fun onLocationResult(result: LocationResult?) {
+        override fun onLocationResult(result: LocationResult) {
             super.onLocationResult(result)
-            if (isTracking.value!!) {
-                result?.locations?.let { locations ->
+            if (isTracking.value == true) {
+                result.locations.let { locations ->
                     for (location in locations) {
                         addPathPoint(location)
-                        Log.i("location", "${location.latitude} ${location.longitude}")
+                        Timber.i("${location.latitude} ${location.longitude}")
                     }
                 }
             }
@@ -182,7 +180,6 @@ class TrackingService : LifecycleService() {
     } ?: pathPoints.postValue(mutableListOf(mutableListOf()))
 
     private fun startForegroundService() {
-        Timber.i("start")
         startTimer()
         val nManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
