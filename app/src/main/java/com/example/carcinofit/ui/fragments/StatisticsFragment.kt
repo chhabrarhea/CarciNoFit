@@ -36,15 +36,20 @@ class StatisticsFragment : Fragment() {
     ): View {
         subscribeToObservers()
         viewModel.getChartStats()
-        viewModel.initializeWeekView(binding.weekView)
         initializeDurationGraph()
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getWeeklyWorkouts(mon = binding.weekView.monday, sun = binding.weekView.sunday)
+    }
+
     private fun subscribeToObservers() {
         viewModel.workouts.observe(viewLifecycleOwner, {
-            viewModel.updateWeekView(binding.weekView, requireContext())
+            binding.weekView.setDates(it, viewModel.getWeeklyGoal())
         })
+
         viewModel.caloriesBurned.observe(viewLifecycleOwner, {
             initializeCalorieGraph()
             val allEntries = it.indices.map { i -> BarEntry(i.toFloat(), it[i].calories.toFloat()) }
@@ -53,6 +58,7 @@ class StatisticsFragment : Fragment() {
             setLineData(allTimeEntries)
             setBarData(allEntries)
         })
+
         viewModel.totalData.observe(viewLifecycleOwner, {
             binding.headerImageView.caloriesTv.text = it.calories.toString()
             binding.headerImageView.minutesTv.text = it.total_time.toString()
@@ -90,8 +96,6 @@ class StatisticsFragment : Fragment() {
         leftAxis.spaceTop = 15f
         leftAxis.axisMaximum = 500f
         leftAxis.axisMinimum = 0f
-
-
     }
 
     private fun initializeDurationGraph() {
