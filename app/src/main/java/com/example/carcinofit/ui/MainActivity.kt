@@ -24,15 +24,9 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.findFragmentById(R.id.NavHost) as NavHostFragment
     }
 
-    private val apiViewModel: ApiViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        apiViewModel.post.observe(this, {// simply observing the live data so whenever it gets notified of new data it passes it to the curly bracket '{}' where we can use it
-            Log.d("Response from api", it.toString())
-        })
 
 
         val navController = navHostFragment.navController
