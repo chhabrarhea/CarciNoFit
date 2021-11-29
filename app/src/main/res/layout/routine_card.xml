@@ -64,7 +64,6 @@
                 android:clickable="false"
                 android:drawablePadding="3dp"
                 android:gravity="center_vertical"
-                android:textAlignment="center"
                 android:textColor="@color/high_primary"
                 app:drawableStartCompat="@drawable/ic_fire"
                 app:drawableTint="@color/black"

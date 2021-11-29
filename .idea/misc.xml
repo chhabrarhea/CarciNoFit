@@ -3,8 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/CarciNoFitChabbo/app/src/main/res/layout/activity_main.xml" value="0.18333333333333332" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/CarciNoFitChabbo/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/drawable/ic_baseline_timer_24.xml" value="0.178125" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/activity_main.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/dialog_generic.xml" value="0.4466666666666667" />
@@ -15,7 +13,7 @@
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_info.xml" value="0.32395833333333335" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_profile.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_routine_detail.xml" value="0.32395833333333335" />
-        <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_run_track.xml" value="0.22" />
+        <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_run_track.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_settings.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/fragment_statistics.xml" value="0.22" />
         <entry key="..\:/Users/Rhea/CarciNoFit/app/src/main/res/layout/hw_dialog.xml" value="0.5" />
@@ -28,7 +26,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

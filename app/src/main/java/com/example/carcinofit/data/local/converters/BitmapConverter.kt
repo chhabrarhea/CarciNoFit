@@ -1,4 +1,4 @@
-package com.example.carcinofit.database
+package com.example.carcinofit.data.local.converters
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carcinofit.R
 import com.example.carcinofit.adapters.ExerciseAdapter
-import com.example.carcinofit.database.models.Exercise
-import com.example.carcinofit.database.models.Routine
+import com.example.carcinofit.data.local.models.Exercise
+import com.example.carcinofit.data.local.models.Routine
 import com.example.carcinofit.databinding.ExerciseDetailDialogBinding
 import com.example.carcinofit.databinding.FragmentRoutineDetailBinding
 import com.google.android.material.appbar.AppBarLayout

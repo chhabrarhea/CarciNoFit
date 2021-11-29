@@ -5,7 +5,7 @@
     <data>
         <variable
             name="routine"
-            type="com.example.carcinofit.database.models.Routine" />
+            type="com.example.carcinofit.data.local.models.Routine" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

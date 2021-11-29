@@ -1,4 +1,4 @@
-package com.example.carcinofit.api
+package com.example.carcinofit.data.remote
 
 import com.example.carcinofit.database.models.DummyApiModel
 import retrofit2.Response

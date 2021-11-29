@@ -18,9 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <include
+        <com.example.carcinofit.custom.WeekView
             android:id="@+id/weekView"
-            layout="@layout/week_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/header_image_view" />

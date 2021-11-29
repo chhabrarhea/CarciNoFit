@@ -7,22 +7,14 @@ import android.location.Location
 import android.os.Build
 import androidx.core.content.ContextCompat
 import com.example.carcinofit.services.PolyLine
-import pub.devrel.easypermissions.EasyPermissions
 import java.util.concurrent.TimeUnit
 
 object TrackingUtility {
     fun locationPermissions() =
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
         } else {
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION
-            )
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
         }
 
     fun hasLocationPermissions(context: Context) =
@@ -66,7 +58,6 @@ object TrackingUtility {
         milliseconds /= 10
         return "${if (hours < 10) "0" else ""}$hours:" +
                 "${if (minutes < 10) "0" else ""}$minutes:" +
-                "${if (seconds < 10) "0" else ""}$seconds:" +
-                "${if (milliseconds < 10) "0" else ""}$milliseconds"
+                "${if (seconds < 10) "0" else ""}$seconds"
     }
 }

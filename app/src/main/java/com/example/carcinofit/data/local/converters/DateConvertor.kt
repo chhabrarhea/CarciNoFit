@@ -1,4 +1,4 @@
-package com.example.carcinofit.database
+package com.example.carcinofit.data.local.converters
 
 import androidx.room.TypeConverter
 import java.util.*

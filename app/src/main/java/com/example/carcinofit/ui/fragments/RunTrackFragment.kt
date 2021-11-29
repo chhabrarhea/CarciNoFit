@@ -1,30 +1,24 @@
 package com.example.carcinofit.ui.fragments
 
-import android.Manifest
-import android.app.AlertDialog
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.carcinofit.R
 import com.example.carcinofit.databinding.DialogGenericBinding
+import com.example.carcinofit.databinding.FragmentRunTrackBinding
 import com.example.carcinofit.other.Constants.ACTION_PAUSE_SERVICE
 import com.example.carcinofit.other.Constants.ACTION_START_OR_RESUME_SERVICE
 import com.example.carcinofit.other.Constants.ACTION_STOP_SERVICE
 import com.example.carcinofit.other.Constants.MAP_ZOOM
 import com.example.carcinofit.other.Constants.POLYLINE_COLOR
 import com.example.carcinofit.other.Constants.POLYLINE_WIDTH
-import com.example.carcinofit.other.Constants.REQUEST_CODE_LOCATION_PERMISSION
 import com.example.carcinofit.other.TrackingUtility
 import com.example.carcinofit.services.PolyLine
 import com.example.carcinofit.services.TrackingService
@@ -38,8 +32,6 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_run_track.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
-import pub.devrel.easypermissions.AppSettingsDialog
-import pub.devrel.easypermissions.EasyPermissions
 import timber.log.Timber
 import java.util.*
 import kotlin.math.roundToInt
@@ -48,26 +40,33 @@ import kotlin.math.roundToInt
 class RunTrackFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
+
     private var isTracking = false
     private var pathPoints = mutableListOf<PolyLine>()
     private var map: GoogleMap? = null
     private var curTimeInMillis = 0L
     private var weight = 80
 
+    private val binding: FragmentRunTrackBinding by lazy {
+        FragmentRunTrackBinding.inflate(layoutInflater)
+    }
+
+
     private val requestPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
         ) { permissions ->
             if (permissions.containsValue(false)) {
-
-            }
+                Snackbar.make(binding.root, "Location Permission Required", Snackbar.LENGTH_LONG)
+                    .show()
+            } else binding.btnToggleRun.isEnabled = true
         }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.fragment_run_track, container, false)
+    ): View = binding.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -104,7 +103,7 @@ class RunTrackFragment : Fragment() {
     }
 
     private fun zoomToSeeWholeTrack() {
-        if(pathPoints.isEmpty() || pathPoints[0].isEmpty())
+        if (pathPoints.isEmpty() || pathPoints[0].isEmpty())
             return
         val bounds = LatLngBounds.Builder()
         for (polyline in pathPoints) {
@@ -124,13 +123,13 @@ class RunTrackFragment : Fragment() {
     }
 
     private fun endRunAndSaveToDb() {
-            zoomToSeeWholeTrack()
+        zoomToSeeWholeTrack()
         map?.snapshot { bmp ->
             var distanceInMeters = 0
             for (polyline in pathPoints) {
                 distanceInMeters += TrackingUtility.calculatePolylineLength(polyline).toInt()
             }
-            if(distanceInMeters < 500) {
+            if (distanceInMeters < 500) {
                 showShortDialog()
                 return@snapshot
             }
@@ -199,18 +198,14 @@ class RunTrackFragment : Fragment() {
     }
 
     private fun updateTracking(isTracking: Boolean) {
-        this.isTracking = isTracking
-        if (!isTracking) {
-            btnToggleRun.text = getString(R.string.start)
-            btnFinishRun.visibility = View.VISIBLE
-        } else {
-            btnToggleRun.text = getString(R.string.stop)
-            btnFinishRun.visibility = View.GONE
+        Timber.i("tracing $isTracking")
+        this.isTracking = isTracking.also {
+            btnToggleRun.text = if (!it) getString(R.string.start) else getString(R.string.stop)
+            binding.btnFinishRun.isVisible = !isTracking
         }
     }
 
     private fun toggleRun() {
-        btnFinishRun.isVisible = true
         if (isTracking) {
             sendCommandToService(ACTION_PAUSE_SERVICE)
         } else {
@@ -241,9 +236,13 @@ class RunTrackFragment : Fragment() {
     }
 
     private fun sendCommandToService(action: String) {
-        requireContext().startService(Intent(requireContext(), TrackingService::class.java).also {
-            it.action = action
-        })
+        requireContext().startForegroundService(
+            Intent(
+                requireContext(),
+                TrackingService::class.java
+            ).also {
+                it.action = action
+            })
     }
 
 
@@ -263,7 +262,14 @@ class RunTrackFragment : Fragment() {
     private fun checkPermissions() {
         if (!TrackingUtility.hasLocationPermissions(requireContext())) {
             requestPermissionLauncher.launch(TrackingUtility.locationPermissions())
-        }
+            if (TrackingUtility.locationPermissions()
+                    .all { shouldShowRequestPermissionRationale(it) }
+            )
+                requestPermissionLauncher.launch(TrackingUtility.locationPermissions())
+            else
+                Snackbar.make(binding.root, "Location Permission Required!", Snackbar.LENGTH_LONG)
+                    .show()
+        } else binding.btnToggleRun.isEnabled = true
     }
 
     override fun onResume() {

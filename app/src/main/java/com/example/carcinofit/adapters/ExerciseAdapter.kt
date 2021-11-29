@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carcinofit.database.models.Exercise
+import com.example.carcinofit.data.local.models.Exercise
 import com.example.carcinofit.databinding.ExerciseCardBinding
 
 class ExerciseAdapter(

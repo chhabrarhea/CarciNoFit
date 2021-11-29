@@ -9,8 +9,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carcinofit.R
 import com.example.carcinofit.adapters.RoutineAdapter
-import com.example.carcinofit.database.models.Routine
-import com.example.carcinofit.database.models.RoutineData
+import com.example.carcinofit.data.local.models.Routine
+import com.example.carcinofit.data.local.models.RoutineData
 import com.example.carcinofit.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 

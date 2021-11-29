@@ -1,9 +1,9 @@
-package com.example.carcinofit.database
+package com.example.carcinofit.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.carcinofit.database.models.ChartStats
-import com.example.carcinofit.database.models.Stats
+import com.example.carcinofit.data.local.models.ChartStats
+import com.example.carcinofit.data.local.models.Stats
 import com.example.workoutapp.database.models.Workout
 import java.util.*
 
