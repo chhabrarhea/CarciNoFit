@@ -35,8 +35,13 @@ class ProfileFragment : Fragment() {
             restSetTv.setOnClickListener { inflateRestSetDialog() }
             goalTv.setOnClickListener { inflateWeeklyGoalDialog() }
             resetTv.setOnClickListener { inflateResetProgressDialog() }
+            reminderTv.setOnClickListener { inflateTimeDialog() }
         }
         return binding.root
+    }
+
+    private fun inflateTimeDialog() {
+
     }
 
     private fun inflateRestSetDialog() {

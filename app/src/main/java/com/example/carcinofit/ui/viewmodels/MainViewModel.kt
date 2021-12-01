@@ -1,14 +1,13 @@
 package com.example.carcinofit.ui.viewmodels
 
 
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carcinofit.data.Repository
-import com.example.carcinofit.other.Constants
+import com.example.carcinofit.data.preferences.PrefsImpl
 import com.example.workoutapp.database.models.Workout
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,10 +20,10 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel@Inject constructor(
     private val repository: Repository,
-    private val sharedPreferences: SharedPreferences
+    private val prefsImpl: PrefsImpl
 ): ViewModel(), LifecycleObserver {
 
-    val monthlyWorkouts= MutableLiveData<List<Workout>>()
+    val monthlyWorkouts = MutableLiveData<List<Workout>>()
 
     fun insertWorkout(category:Int,absoluteDate: Date,duration: Long,calories:Int,speed:Float=0f,dist:Int=0,img:Bitmap?=null){
         val date=Calendar.getInstance()
@@ -56,5 +55,5 @@ class MainViewModel@Inject constructor(
         }
     }
 
-    fun getRestSet(): Int = sharedPreferences.getInt(Constants.userRestTime, 10)
+    fun getRestSet(): Int = prefsImpl.getRestSet()
 }

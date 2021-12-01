@@ -2,21 +2,21 @@ package com.example.carcinofit.ui.viewmodels
 
 import android.app.TimePickerDialog
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.carcinofit.other.Constants
+import com.example.carcinofit.data.preferences.PrefsImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val sharedPreferences: SharedPreferences) :
+class ProfileViewModel @Inject constructor(private val prefsImpl: PrefsImpl) :
     ViewModel(), Observable {
-    private var restTime: Int = sharedPreferences.getInt(Constants.userRestTime, 20)
-    private var weeklyGoal = sharedPreferences.getInt(Constants.userWeeklyGoal, 1)
+
+    private var restTime: Int = prefsImpl.getRestSet()
+    private var weeklyGoal = prefsImpl.getWeeklyGoal()
 
     @Bindable
     val restTimeText = MutableLiveData<String>()
@@ -58,7 +58,7 @@ class ProfileViewModel @Inject constructor(private val sharedPreferences: Shared
     }
 
     fun setRestSet() {
-        sharedPreferences.edit().putInt(Constants.userRestTime, restTime).apply()
+        prefsImpl.setRestSet(restTime)
     }
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
@@ -70,14 +70,11 @@ class ProfileViewModel @Inject constructor(private val sharedPreferences: Shared
     }
 
     fun setWeeklyGoal() {
-        sharedPreferences.edit().putInt(Constants.userWeeklyGoal, weeklyGoal).apply()
+        prefsImpl.setWeeklyGoal(weeklyGoal)
     }
 
     fun resetData() {
-        sharedPreferences.edit().putInt(Constants.userRestTime, 10)
-            .putInt(Constants.userWeeklyGoal, 1).putInt(Constants.userHeightKey, 150)
-            .putInt(Constants.userWeightKey, 55).putInt(Constants.userGender, 0)
-            .putInt(Constants.userAge, 22).apply()
+        prefsImpl.resetPrefs()
     }
 
     fun inflateReminderDialog(context: Context) {
@@ -99,4 +96,6 @@ class ProfileViewModel @Inject constructor(private val sharedPreferences: Shared
 
 //        am.setRepeating(AlarmManager.RTC_WAKEUP, alarmTime, 24 * 60 * 60 * 1000, pi)
     }
+
+
 }

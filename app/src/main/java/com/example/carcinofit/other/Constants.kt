@@ -3,7 +3,7 @@ package com.example.carcinofit.other
 import android.graphics.Color
 
 object Constants {
-    const val dummyURL="https://jsonplaceholder.typicode.com/"
+    const val dummyURL = "https://jsonplaceholder.typicode.com/"
 
     const val WORKOUT_DATABASE_NAME = "work_db"
 
@@ -24,16 +24,4 @@ object Constants {
     const val MAP_ZOOM = 18f
 
     const val TIMER_UPDATE_INTERVAL = 50L
-
-    const val userHeightKey="userHeightKey"
-    const val userWeightKey="userWeightKey"
-    const val userWeeklyGoal="userWeeklyGoal"
-    const val userAge="userAge"
-    const val userGender="userGender"
-    const val userRestTime="userRestTime"
-
-    val BmiCategory = arrayOf(
-        "Severely Underweight", "Underweight", "Normal",
-        "Overweight", "Obese Class I", "Obese Class II"
-    )
 }

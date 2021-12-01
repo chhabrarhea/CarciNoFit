@@ -1,10 +1,9 @@
 package com.example.carcinofit.ui.viewmodels
 
-import android.content.SharedPreferences
 import androidx.lifecycle.*
 import com.example.carcinofit.data.Repository
 import com.example.carcinofit.data.local.models.ChartStats
-import com.example.carcinofit.other.Constants
+import com.example.carcinofit.data.preferences.PrefsImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.*
@@ -13,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class StatisticsViewModel @Inject constructor(
     private val repository: Repository,
-    private val sharedPreferences: SharedPreferences
+    private val prefsImpl: PrefsImpl
 ) : ViewModel(), LifecycleObserver {
 
     private val _weeklyWorkouts = MutableLiveData<List<Date>>()
@@ -28,7 +27,7 @@ class StatisticsViewModel @Inject constructor(
         }
     }
 
-    fun getWeeklyGoal(): Int = sharedPreferences.getInt(Constants.userWeeklyGoal, 3)
+    fun getWeeklyGoal(): Int = prefsImpl.getWeeklyGoal()
 
     fun getWeeklyWorkouts(mon: Calendar, sun: Calendar) {
         mon.set(Calendar.HOUR, 0)

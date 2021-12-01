@@ -1,19 +1,17 @@
 package com.example.carcinofit.ui.viewmodels
 
-import android.content.SharedPreferences
-import android.util.Log
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.carcinofit.other.Constants
+import com.example.carcinofit.data.preferences.PrefsImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class InfoViewModel
 @Inject constructor
-    (private val sharedPreferences: SharedPreferences) : ViewModel(), Observable {
+    (private val prefsImpl: PrefsImpl) : ViewModel(), Observable {
     var height = 0
     var weight = 0
     var age = 0
@@ -29,10 +27,10 @@ class InfoViewModel
     val ageText = MutableLiveData<String>()
 
     init {
-        height = sharedPreferences.getInt(Constants.userHeightKey, 140)
-        weight = sharedPreferences.getInt(Constants.userWeightKey, 50)
-        age = sharedPreferences.getInt(Constants.userAge, 20)
-        gender = sharedPreferences.getInt(Constants.userGender, 0)
+        height = prefsImpl.getHeight()
+        weight = prefsImpl.getWeight()
+        age = prefsImpl.getAge()
+        gender = prefsImpl.getGender()
         heightText.value = height.toString()
         weightText.value = weight.toString()
         ageText.value = age.toString()
@@ -42,7 +40,6 @@ class InfoViewModel
     fun progressHeight(progress: Int) {
         height = 100 + progress
         heightText.value = height.toString()
-        Log.i("height", heightText.value.toString())
     }
 
     fun incrementWeight() {
@@ -66,11 +63,12 @@ class InfoViewModel
     }
 
     fun saveData() {
-        sharedPreferences.edit().putInt(Constants.userHeightKey, height)
-            .putInt(Constants.userWeightKey, weight)
-            .putInt(Constants.userAge, age)
-            .putInt(Constants.userGender, gender)
-            .apply()
+        prefsImpl.apply {
+            setAge(age)
+            setGender(gender)
+            setHeight(height)
+            setWeight(weight)
+        }
     }
 
     fun getProgressBarProgress(): Int {
