@@ -116,8 +116,6 @@ class StatisticsFragment : Fragment() {
         leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART)
 
         binding.lineChart.axisRight.isEnabled = false
-
-
     }
 
     private fun setBarData(allEntries: List<BarEntry>) {

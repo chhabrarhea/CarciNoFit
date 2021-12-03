@@ -13,7 +13,6 @@ data class Workout(
     @Nullable
     var img: Bitmap? = null,
     var timestamp: Date,
-    var relativeDate:Date,
     var avgSpeedInKMH: Float = 0f,
     var distanceInMeters: Int = 0,
     var timeInMillis: Long = 0L,

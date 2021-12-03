@@ -49,7 +49,7 @@ interface WorkoutDAO {
    @Query("SELECT timestamp from workout_table where  timestamp between :start AND :end ")
    suspend fun getWeeklyWorkouts(start:Date,end: Date):List<Date>
 
-   @Query("Select sum(caloriesBurned) as calories,sum(timeInMillis)/1000/60 as duration,relativeDate from workout_table group by relativeDate")
+   @Query("Select sum(caloriesBurned) as calories, sum(timeInMillis)/1000/60 as duration,timestamp from workout_table GROUP BY date(timestamp/1000, 'unixepoch')")
    suspend fun getDailyCalories():List<ChartStats>
 
    @Query("Select sum(caloriesBurned) as calories,sum(timeInMillis)/1000/60 as total_time,count(id) as workouts from workout_table")

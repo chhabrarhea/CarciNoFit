@@ -8,8 +8,8 @@ import java.util.*
 class CustomAxisFormatter(val calories:List<ChartStats>):IndexAxisValueFormatter() {
 
     override fun getFormattedValue(value: Float): String {
-        val date=calories[value.toInt()].relativeDate
-        val dateFormat=SimpleDateFormat("dd MMM ''yy", Locale.getDefault())
-        return dateFormat.format(date)
+        val date = Calendar.getInstance().apply { timeInMillis = calories[value.toInt()].timestamp }
+        val dateFormat = SimpleDateFormat("dd MMM ''yy", Locale.getDefault())
+        return dateFormat.format(date.time)
     }
 }
