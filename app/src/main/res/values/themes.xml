@@ -115,4 +115,20 @@
     </style>
 
 
+    <style name="CustomChipStyle" parent="@style/Widget.MaterialComponents.Chip.Entry">
+        <item name="chipCornerRadius">12dp</item>
+        <item name="chipStrokeWidth">2dp</item>
+        <item name="chipSpacing">8dp</item>
+        <item name="chipStrokeColor">@color/shadow</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipBackgroundColor">@color/chip_bg_color</item>
+        <item name="chipEndPadding">12dp</item>
+        <item name="chipStartPadding">12dp</item>
+        <item name="android:textAppearance">@style/Caption1</item>
+        <item name="ensureMinTouchTargetSize">false</item>
+        <item name="textEndPadding">0dp</item>
+        <item name="textStartPadding">0dp</item>
+    </style>
+
+
 </resources>

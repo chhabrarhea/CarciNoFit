@@ -43,7 +43,7 @@ class WeekView constructor(
             day = this.get(Calendar.DAY_OF_MONTH)
             year = this.get(Calendar.YEAR)
             month = this.get(Calendar.MONTH)
-            val yearMonth = YearMonth.of(year, month)
+            val yearMonth = YearMonth.of(year, month + 1)
             daysInMonth = yearMonth.lengthOfMonth()
             dayOfWeek = this.get(Calendar.DAY_OF_WEEK)
         }

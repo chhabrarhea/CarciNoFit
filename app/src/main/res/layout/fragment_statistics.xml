@@ -49,7 +49,6 @@
                     android:id="@+id/calorieChart"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
-
                     android:layout_below="@id/calorieHeading"
                     android:layout_marginBottom="5dp" />
             </RelativeLayout>
