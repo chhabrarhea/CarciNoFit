@@ -5,8 +5,10 @@ import androidx.fragment.app.FragmentActivity
 import com.example.carcinofit.data.local.models.FitData
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.fitness.Fitness
+import com.google.android.gms.fitness.FitnessActivities
 import com.google.android.gms.fitness.FitnessOptions
 import com.google.android.gms.fitness.data.*
+import com.google.android.gms.fitness.request.SessionInsertRequest
 import dagger.hilt.android.qualifiers.ApplicationContext
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -69,6 +71,31 @@ class FitService @Inject constructor(
             }
             .addOnFailureListener { ex ->
                 Timber.i("onFailed: $ex")
+            }
+
+        val session = Session.Builder()
+            .setName("CarciNoFit: ${it.name}")
+            .setIdentifier("${context.packageName} ${System.currentTimeMillis()}")
+            .setDescription("Home Workout")
+            .setActivity(FitnessActivities.OTHER)
+            .setStartTime(it.endTime - it.duration, TimeUnit.MILLISECONDS)
+            .setEndTime(it.endTime, TimeUnit.MILLISECONDS)
+            .build()
+        val insertRequest = SessionInsertRequest.Builder()
+            .setSession(session)
+            .addDataSet(dataSet)
+            .build()
+
+        Fitness.getSessionsClient(
+            context,
+            GoogleSignIn.getAccountForExtension(context, fitnessOptions)
+        )
+            .insertSession(insertRequest)
+            .addOnSuccessListener {
+                Timber.i("insert Session Successful")
+            }
+            .addOnFailureListener { e ->
+                Timber.i("There was a problem inserting the session: $e")
             }
     }
 
