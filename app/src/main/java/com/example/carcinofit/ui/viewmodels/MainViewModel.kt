@@ -65,4 +65,6 @@ class MainViewModel @Inject constructor(
     }
 
     fun getRestSet(): Int = prefsImpl.getRestSet()
+
+    fun getSyncToGoogleFit(): Boolean = prefsImpl.getSyncToGoogleFit()
 }

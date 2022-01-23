@@ -18,6 +18,7 @@ import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.bumptech.glide.Glide
 import com.example.carcinofit.R
 import com.example.carcinofit.data.local.models.Exercise
+import com.example.carcinofit.data.local.models.FitData
 import com.example.carcinofit.data.local.models.Routine
 import com.example.carcinofit.databinding.FragmentExerciseBinding
 import com.example.carcinofit.other.Timer
@@ -98,9 +99,16 @@ class ExerciseFragment : Fragment(), TextToSpeech.OnInitListener {
         }
         val bundle = Bundle()
         routine?.let {
-            bundle.putInt("calories", it.caloriesBurned)
-            bundle.putInt("exercises", it.exercises.size)
-            bundle.putInt("duration", it.duration)
+            bundle.putParcelable(
+                WorkoutSummaryFragment.FIT_DATA,
+                FitData(
+                    it.name,
+                    System.currentTimeMillis(),
+                    it.duration * 60 * 1000L,
+                    it.caloriesBurned,
+                    it.exercises.size
+                )
+            )
         }
         findNavController().navigate(R.id.action_restFragment_to_workoutSummaryFragment, bundle)
     }
