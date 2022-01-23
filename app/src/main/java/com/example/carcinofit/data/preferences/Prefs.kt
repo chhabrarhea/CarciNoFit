@@ -14,4 +14,6 @@ interface Prefs {
     fun getAge(): Int
     fun getGender(): Int
     fun setGender(gender: Int)
+    fun setSyncToGoogleFit(sync: Boolean)
+    fun getSyncToGoogleFit(): Boolean
 }

@@ -7,4 +7,5 @@ object PrefsKeys {
     const val AGE_PREFS_KEY = "userAge"
     const val GENDER_PREFS_KEY = "userGender"
     const val REST_SET_PREFS_KEY = "userRestTime"
+    const val SYNC_TO_GOOGLE_FIT_KEY = "syncToGoogleFit"
 }

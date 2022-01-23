@@ -58,4 +58,12 @@ class PrefsImpl @Inject constructor(private val sharedPreferences: SharedPrefere
         sharedPreferences.edit().putInt(PrefsKeys.GENDER_PREFS_KEY, gender).apply()
     }
 
+    override fun setSyncToGoogleFit(sync: Boolean) {
+        sharedPreferences.edit().putBoolean(PrefsKeys.SYNC_TO_GOOGLE_FIT_KEY, sync).apply()
+    }
+
+    override fun getSyncToGoogleFit(): Boolean {
+        return sharedPreferences.getBoolean(PrefsKeys.SYNC_TO_GOOGLE_FIT_KEY, false)
+    }
+
 }
