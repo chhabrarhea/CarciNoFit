@@ -83,6 +83,13 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun getReminderDays() = savedStateHandle[REMINDER_DAYS] ?: emptyList<Int>()
+    fun getSyncToGoogleFit(): Boolean {
+        return prefsImpl.getSyncToGoogleFit()
+    }
+
+    fun setSyncToGoogleFit(sync: Boolean) {
+        prefsImpl.setSyncToGoogleFit(sync)
+    }
 
     companion object {
         private const val REMINDER_DAYS = "reminder_days"

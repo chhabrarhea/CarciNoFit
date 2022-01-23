@@ -45,6 +45,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAlarmDaySelectionDialog()
+        initSyncToGoogleFitSwitch()
         binding.apply {
             profileTv.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_infoFragment)
@@ -53,6 +54,13 @@ class ProfileFragment : Fragment() {
             goalTv.setOnClickListener { inflateWeeklyGoalDialog() }
             resetTv.setOnClickListener { inflateResetProgressDialog() }
             reminderTv.setOnClickListener { alarmDayDialog.show() }
+        }
+    }
+
+    private fun initSyncToGoogleFitSwitch() {
+        binding.syncSwitch.isChecked = viewModel.getSyncToGoogleFit()
+        binding.syncSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.setSyncToGoogleFit(isChecked)
         }
     }
 
